@@ -50,13 +50,13 @@ fn compress(c: &mut Criterion) {
     let mut group = new_benchmark_group!(c, "Compress");
     for input in inputs {
         group.bench_with_input(
-            BenchmarkId::new("THC", input),
+            BenchmarkId::new("CHT", input),
             &input,
             |b, input| {
                 let values = &values[&input];
                 b.iter(|| {
                     let mut buff = Cursor::new(vec![]);
-                    thc::compress(&mut buff, values.iter().copied())
+                    h3o_zip::compress(&mut buff, values.iter().copied())
                 });
             },
         );
@@ -73,7 +73,7 @@ fn decompress(c: &mut Criterion) {
             input
         );
         let key = format!("{input}.cht");
-        let cells = fs::read(filename).expect("THC file");
+        let cells = fs::read(filename).expect("CHT file");
         acc.insert(key, cells);
 
         acc
@@ -83,13 +83,13 @@ fn decompress(c: &mut Criterion) {
 
     for input in inputs {
         group.bench_with_input(
-            BenchmarkId::new("THC", input),
+            BenchmarkId::new("CHT", input),
             &input,
             |b, input| {
                 let key = format!("{input}.cht");
                 let bytes = &values[&key];
                 b.iter(|| {
-                    thc::decompress(bytes.as_slice())
+                    h3o_zip::decompress(bytes.as_slice())
                         .collect::<Result<Vec<_>, _>>()
                         .expect("valid input")
                 });

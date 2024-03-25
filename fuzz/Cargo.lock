@@ -9,7 +9,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bf6ccdb167abbf410dcb915cabd428929d7f6a04980b54a11f26a39f1c7f7107"
 dependencies = [
  "cfg-if",
- "getrandom",
+ "const-random",
  "once_cell",
  "version_check",
 ]
@@ -19,12 +19,6 @@ name = "arbitrary"
 version = "1.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "510c76ecefdceada737ea728f4f9a84bd2e1ef29f1ba555e560940fe279954de"
-
-[[package]]
-name = "auto_ops"
-version = "0.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7460f7dd8e100147b82a63afca1a20eb6c231ee36b90ba7272e14951cb58af59"
 
 [[package]]
 name = "bitvec"
@@ -51,10 +45,30 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
-name = "const_panic"
-version = "0.2.7"
+name = "const-random"
+version = "0.1.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "58baae561b85ca19b3122a9ddd35c8ec40c3bcd14fe89921824eae73f7baffbf"
+checksum = "87e00182fe74b066627d63b85fd550ac2998d4b0bd86bfed477a0ae4c7c71359"
+dependencies = [
+ "const-random-macro",
+]
+
+[[package]]
+name = "const-random-macro"
+version = "0.1.16"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f9d839f2a20b0aee515dc581a6172f2321f96cab76c1a38a4c584a194955390e"
+dependencies = [
+ "getrandom",
+ "once_cell",
+ "tiny-keccak",
+]
+
+[[package]]
+name = "crunchy"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7a81dae078cea95a014a339291cec439d2f232ebe854a9d672b796c6afafa9b7"
 
 [[package]]
 name = "either"
@@ -87,31 +101,40 @@ dependencies = [
 
 [[package]]
 name = "h3o"
-version = "0.1.0"
-source = "git+ssh://git@github.com/HydroniumLabs/h3o#f98c071d1bd5c9942686749bd2d1736b131ec33d"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "732921589aa26ebc91ba314ccbccc284d25a85b24a3bcd98dfa476fd8100bd85"
 dependencies = [
  "ahash",
- "auto_ops",
  "either",
  "float_eq",
- "konst",
+ "h3o-bit",
+ "libm",
 ]
 
 [[package]]
-name = "konst"
-version = "0.3.4"
+name = "h3o-bit"
+version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4850f150968eec6df7f1b348a0874db47a9bcd5e2a41ee1d347392f929590d9d"
+checksum = "6fb45e8060378c0353781abf67e1917b545a6b710d0342d85b70c125af7ef320"
+
+[[package]]
+name = "h3o-zip"
+version = "0.1.5"
 dependencies = [
- "const_panic",
- "konst_kernel",
+ "bitvec",
+ "either",
+ "h3o",
+ "h3o-bit",
 ]
 
 [[package]]
-name = "konst_kernel"
-version = "0.3.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7771682454392dfe62a909aba2c6efc6674e2ad0b678fbc33b154e2e1bd59b89"
+name = "h3o-zip-fuzz"
+version = "0.0.0"
+dependencies = [
+ "h3o-zip",
+ "libfuzzer-sys",
+]
 
 [[package]]
 name = "libc"
@@ -129,6 +152,12 @@ dependencies = [
  "cc",
  "once_cell",
 ]
+
+[[package]]
+name = "libm"
+version = "0.2.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4ec2a862134d2a7d32d7983ddcdd1c4923530833c9f2ea1a44fc5fa473989058"
 
 [[package]]
 name = "once_cell"
@@ -149,20 +178,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "55937e1799185b12863d447f42597ed69d9928686b8d88a1df17376a097d8369"
 
 [[package]]
-name = "thc"
-version = "0.1.0"
+name = "tiny-keccak"
+version = "2.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2c9d3793400a45f954c52e73d068316d76b6f4e36977e3fcebb13a2721e80237"
 dependencies = [
- "bitvec",
- "either",
- "h3o",
-]
-
-[[package]]
-name = "thc-fuzz"
-version = "0.0.0"
-dependencies = [
- "libfuzzer-sys",
- "thc",
+ "crunchy",
 ]
 
 [[package]]

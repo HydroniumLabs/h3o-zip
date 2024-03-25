@@ -14,6 +14,10 @@ Possible sections are:
 <!-- next-header -->
 ## [Unreleased] - ReleaseDate
 
+### Changed
+
+- renamed the crate `h3o-zip` (previously known as `thc`)
+
 ## [0.1.5] - 2024-03-20
 
 ### Changed

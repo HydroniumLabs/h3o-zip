@@ -5,5 +5,5 @@ fuzz_target!(|data: &[u8]| {
     if data.len() < 2 {
         return;
     }
-    thc::decompress(data).collect::<Result<Vec<_>, _>>();
+    h3o_zip::decompress(data).collect::<Result<Vec<_>, _>>();
 });

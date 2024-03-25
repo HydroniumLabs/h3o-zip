@@ -1,4 +1,4 @@
-//! The H3 Compressor (THC).
+//! H3 compression algorithms.
 //!
 //! This library allows to compress an H3 cell set into a compacted
 //! space-efficient representation.
@@ -156,7 +156,7 @@ pub use error::DecodingError;
 /// ].iter().copied().map(CellIndex::try_from).collect::<Result<Vec<_>, _>>()?;
 ///
 /// let mut buffer = Cursor::new(vec![]);
-/// thc::compress(&mut buffer, cells.clone()).expect("compress");
+/// h3o_zip::compress(&mut buffer, cells.clone()).expect("compress");
 ///
 /// let bytes = buffer.into_inner();
 ///
@@ -185,7 +185,7 @@ pub fn compress<W: Write>(
 ///     0x41, 0x81, 0x00
 /// ];
 ///
-/// let cells = thc::decompress(bytes.as_slice())
+/// let cells = h3o_zip::decompress(bytes.as_slice())
 ///     .collect::<Result<Vec<_>, _>>()?;
 ///
 /// # Ok::<(), Box<dyn std::error::Error>>(())

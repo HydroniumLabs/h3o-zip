@@ -1,13 +1,13 @@
 [package]
-name = "thc"
-version = "0.1.5"
+name = "h3o-zip"
+version = "0.1.6"
 authors = ["Sylvain Laperche <sylvain.laperche@gmail.com>"]
 edition = "2021"
 description = "A compression scheme tailored for H3 cell indexes"
-documentation = "https://docs.rs/thc/"
+documentation = "https://docs.rs/h3o-zip/"
 readme = "README.md"
-homepage = "https://docs.rs/thc"
-repository = "https://github.com/HydroniumLabs/thc"
+homepage = "https://docs.rs/h3o-zip"
+repository = "https://github.com/HydroniumLabs/h3o-zip"
 license = "BSD-3-Clause"
 keywords = ["h3", "compression"]
 categories = ["algorithms"]
@@ -32,7 +32,7 @@ criterion = { version = "0.5", default-features = false, features = ["plotters",
 
 [[bench]]
 harness = false
-name = "thc"
+name = "api"
 
 [profile.release]
 lto = "thin"

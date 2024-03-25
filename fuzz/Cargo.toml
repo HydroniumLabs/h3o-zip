@@ -1,7 +1,7 @@
 [package]
 authors = ["Automatically generated"]
 edition = "2018"
-name = "thc-fuzz"
+name = "h3o-zip-fuzz"
 publish = false
 version = "0.0.0"
 
@@ -11,7 +11,7 @@ cargo-fuzz = true
 [dependencies]
 libfuzzer-sys = "0.4"
 
-[dependencies.thc]
+[dependencies.h3o-zip]
 path = ".."
 
 # Prevent this from interfering with workspaces
