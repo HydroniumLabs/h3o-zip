@@ -114,6 +114,7 @@
     clippy::module_name_repetitions,
     // Usually yes, but not really applicable for most literals in this crate.
     clippy::unreadable_literal,
+    reason = "allow some exceptions"
 )]
 
 // }}}

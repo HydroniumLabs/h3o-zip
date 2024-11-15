@@ -550,7 +550,10 @@ impl<'a> Iter<'a> {
         // Remove the current index, if the node is exhausted then we go up the
         // hierarchy, 'til the root if necessary.
         for i in (0..self.path.len()).rev() {
-            #[allow(clippy::match_on_vec_items)] // Index is valid, cf. above.
+            #[expect(
+                clippy::match_on_vec_items,
+                reason = "index is valid, cf. above"
+            )]
             match self.path[i] {
                 // We're back to the base cell, this whole sub-tree is done.
                 Node::Root(_) => {
@@ -644,8 +647,10 @@ fn cell_index_from_steps(steps: &[Step]) -> Result<CellIndex, DecodingError> {
         _ => return Err(DecodingError::bad_index("empty path", None)),
     };
 
-    // `directions.len() <= Resolution::Fifteen`, checked above.
-    #[allow(clippy::cast_possible_truncation)]
+    #[expect(
+        clippy::cast_possible_truncation,
+        reason = "`directions.len() <= Resolution::Fifteen`, checked above"
+    )]
     let resolution = directions.len() as u8;
     index = h3o_bit::set_resolution(index, resolution);
 
@@ -661,8 +666,10 @@ fn cell_index_from_steps(steps: &[Step]) -> Result<CellIndex, DecodingError> {
     // Set directions.
     for (i, step) in directions.iter().enumerate() {
         if let Step::Direction(direction) = *step {
-            // `directions.len()`, and thus `i`, is 15 at most which fit in u8.
-            #[allow(clippy::cast_possible_truncation)]
+            #[expect(
+                clippy::cast_possible_truncation,
+                reason = "`directions.len()`, and thus `i`, is 15 at most which fit in u8"
+            )]
             let resolution = (i + 1) as u8; // Directions start at res 1.
 
             index = h3o_bit::set_direction(index, resolution, direction);
@@ -701,7 +708,10 @@ impl Children {
     }
 
     /// Returns the index of the first child, if any.
-    #[allow(clippy::cast_possible_truncation)] // 64 zeros max, can't overflow.
+    #[expect(
+        clippy::cast_possible_truncation,
+        reason = "64 zeros max, can't overflow"
+    )]
     const fn first_child_index(self) -> u8 {
         // Remember that a node with two children, 1 and 4 looks like this:
         //     0b00010010
