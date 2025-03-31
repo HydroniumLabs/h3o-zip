@@ -14,6 +14,10 @@ Possible sections are:
 <!-- next-header -->
 ## [Unreleased] - ReleaseDate
 
+### Changed
+
+- bump `h3o` to 0.8
+
 ## [0.1.7] - 2024-11-15
 
 ### Changed
