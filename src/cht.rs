@@ -323,7 +323,7 @@ fn add_cell(
 
 /// Returns a tagged version of `value`.
 const fn tag(value: u8) -> u8 {
-    value << 1 | 1
+    (value << 1) | 1
 }
 
 // -----------------------------------------------------------------------------
@@ -577,7 +577,7 @@ impl<'a> Iter<'a> {
     }
 }
 
-impl<'a> Iterator for Iter<'a> {
+impl Iterator for Iter<'_> {
     type Item = Result<CellIndex, DecodingError>;
 
     fn next(&mut self) -> Option<Self::Item> {
