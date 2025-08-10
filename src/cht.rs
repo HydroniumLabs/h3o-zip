@@ -550,10 +550,6 @@ impl<'a> Iter<'a> {
         // Remove the current index, if the node is exhausted then we go up the
         // hierarchy, 'til the root if necessary.
         for i in (0..self.path.len()).rev() {
-            #[expect(
-                clippy::match_on_vec_items,
-                reason = "index is valid, cf. above"
-            )]
             match self.path[i] {
                 // We're back to the base cell, this whole sub-tree is done.
                 Node::Root(_) => {
@@ -697,7 +693,7 @@ impl Children {
     }
 
     /// Removes the first child of the node.
-    fn remove(&mut self) {
+    const fn remove(&mut self) {
         // Clear the corresponding bit.
         self.0 &= !(1 << self.first_child_index());
     }
