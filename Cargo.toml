@@ -28,7 +28,7 @@ h3o-bit = { version = "0.1", default-features = false }
 
 [dev-dependencies]
 byteorder = { version = "1.0", default-features = false, features = ["std"] }
-criterion = { version = "0.5", default-features = false, features = ["plotters", "html_reports"] }
+criterion = { version = "0.7", default-features = false, features = ["plotters", "html_reports"] }
 
 [[bench]]
 harness = false
