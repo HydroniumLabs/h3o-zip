@@ -78,15 +78,19 @@ mod tests {
     // All error must have a non-empty display.
     #[test]
     fn display() {
-        assert!(!DecodingError::bad_header("invalid header")
-            .to_string()
-            .is_empty());
+        assert!(
+            !DecodingError::bad_header("invalid header")
+                .to_string()
+                .is_empty()
+        );
 
         assert!(!DecodingError::missing_tag(42).to_string().is_empty());
 
-        assert!(!DecodingError::bad_index("invalid cell index", None)
-            .to_string()
-            .is_empty());
+        assert!(
+            !DecodingError::bad_index("invalid cell index", None)
+                .to_string()
+                .is_empty()
+        );
 
         assert!(!DecodingError::not_enough_data().to_string().is_empty());
     }
@@ -94,21 +98,27 @@ mod tests {
     // Check that source if forwarded when relevant.
     #[test]
     fn source() {
-        assert!(DecodingError::bad_header("invalid header")
-            .source()
-            .is_none());
+        assert!(
+            DecodingError::bad_header("invalid header")
+                .source()
+                .is_none()
+        );
 
         assert!(DecodingError::missing_tag(42).source().is_none());
 
-        assert!(DecodingError::bad_index("invalid cell index", None)
+        assert!(
+            DecodingError::bad_index("invalid cell index", None)
+                .source()
+                .is_none()
+        );
+        assert!(
+            DecodingError::bad_index(
+                "not a cell index",
+                CellIndex::try_from(0).err()
+            )
             .source()
-            .is_none());
-        assert!(DecodingError::bad_index(
-            "not a cell index",
-            CellIndex::try_from(0).err()
-        )
-        .source()
-        .is_some());
+            .is_some()
+        );
 
         assert!(DecodingError::not_enough_data().source().is_none());
     }

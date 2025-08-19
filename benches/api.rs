@@ -1,7 +1,7 @@
 use byteorder::{LittleEndian, ReadBytesExt};
 use criterion::{
-    criterion_group, criterion_main, AxisScale, BenchmarkId, Criterion,
-    PlotConfiguration,
+    AxisScale, BenchmarkId, Criterion, PlotConfiguration, criterion_group,
+    criterion_main,
 };
 use h3o::CellIndex;
 use std::{collections::HashMap, fs, io::Cursor, mem::size_of};
