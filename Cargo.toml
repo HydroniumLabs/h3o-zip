@@ -1,6 +1,6 @@
 [package]
 name = "h3o-zip"
-version = "0.1.8"
+version = "0.1.9"
 authors = ["Sylvain Laperche <sylvain.laperche@gmail.com>"]
 edition = "2024"
 description = "A compression scheme tailored for H3 cell indexes"

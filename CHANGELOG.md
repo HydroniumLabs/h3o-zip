@@ -16,6 +16,11 @@ Possible sections are:
 
 ### Changed
 
+- bump `h3o` to 0.9
+- bump to 2024 edition
+
+### Changed
+
 - bump `criterion` to 0.7
 
 ## [0.1.8] - 2025-03-31
